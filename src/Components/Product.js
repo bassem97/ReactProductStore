@@ -18,42 +18,45 @@ const ProductImageWrapper = styled.div`
         margin: 5px;
         max-width: 150px;
     `
+const ProductImageWrapperBest = styled.div`
+  margin: 5px;
+  max-width: 150px;
+`;
 const ProductImage = styled.img`
         width: 100%;
         height: 100%;
         border-radius: 25px;
     `
-const ProductInfoWrapper = styled.div`
-      margin-top: auto;
-      margin-bottom: 5px;
-      display: flex;
-      flex-direction: column;
-      & > span {
-        text-align: center;
-      }
-    `;
-const ProductFrameBest = styled.div`
-  border-radius: 25px;
-  min-height: 200px;
-  min-width: 200px;
-  background-color: #DB7093;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  animation:  clignote 2s linear infinite;
-  @keyframes clignote {  
-  50% { opacity: 0.5; }
-}
-`;
-const ProductImageWrapperBest = styled.div`
-  margin: 5px;
-  max-width: 200px;
-`;
 const ProductImageBest = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 25px;
 `;
+
+const ProductFrameBest = styled.div`
+  border-radius: 25px;
+  min-height: 150px;
+  min-width: 150px;
+  background-color: #DB7093;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation:  clignote 2s linear infinite;
+  @keyframes clignote {  
+  50% { opacity: 0.5; }
+}
+`;
+const ProductInfoWrapper = styled.div`
+  margin-top: auto;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  & > span {
+    text-align: center;
+  }
+`;
+
 const ProductInfoWrapperBest = styled.div`
   color:white;
   margin-top: auto;
@@ -89,11 +92,10 @@ export default function Product(props){
             <p>💲{product.price} 💕{product.likes}</p>
             <button onClick={() => setProduct({...product, likes: Number(product.likes + 1)})}>💖💖💖</button>
         </ProductInfoWrapper>
-    </ProductFrame>):
-        (<ProductFrameBest>
+    </ProductFrame>) : (<ProductFrameBest>
             {product.name}
             <ProductImageWrapperBest>
-                <ProductImage src={product.img}/>
+                <ProductImageBest src={product.img}/>
             </ProductImageWrapperBest>
             <ProductInfoWrapperBest>
                 <p>💲{product.price} 💕{product.likes}</p>
