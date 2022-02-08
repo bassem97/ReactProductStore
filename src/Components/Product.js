@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 
 
@@ -83,7 +84,7 @@ export default function Product(props){
     const [likes, setLikes] = useState(0)
     const [product, setProduct] = useState(props.product)
 
-    return product.likes < 5 ? (<ProductFrame>
+    return product.likes < 5 ? (<ProductFrame >
         {product.name}
         <ProductImageWrapper>
             <ProductImage src={product.img}/>
@@ -93,7 +94,9 @@ export default function Product(props){
             <button onClick={() => setProduct({...product, likes: Number(product.likes + 1)})}>💖💖💖</button>
         </ProductInfoWrapper>
     </ProductFrame>) : (<ProductFrameBest>
-            {product.name}
+            <Link to={`/productDetails/${product.name}`}>
+                {product.name}
+            </Link>
             <ProductImageWrapperBest>
                 <ProductImageBest src={product.img}/>
             </ProductImageWrapperBest>
