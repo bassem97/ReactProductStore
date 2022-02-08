@@ -3,14 +3,7 @@ import React, {useState} from "react";
 
 
 
-
-export default function Product(props){
-
-    const [likes, setLikes] = useState(0)
-    const [product, setProduct] = useState(props.product)
-
-
-    const ProductFrame = styled.div`
+const ProductFrame = styled.div`
         border-radius: 25px;
         min-height: 150px;
         max-width: 150px;
@@ -21,19 +14,16 @@ export default function Product(props){
         flex-direction: column;
         align-items: center;
     `
-
-    const ProductImageWrapper = styled.div`
+const ProductImageWrapper = styled.div`
         margin: 5px;
         max-width: 150px;
     `
-
-    const ProductImage = styled.img`
+const ProductImage = styled.img`
         width: 100%;
         height: 100%;
         border-radius: 25px;
     `
-
-    const ProductInfoWrapper = styled.div`
+const ProductInfoWrapper = styled.div`
       margin-top: auto;
       margin-bottom: 5px;
       display: flex;
@@ -42,7 +32,7 @@ export default function Product(props){
         text-align: center;
       }
     `;
-    const ProductFrameBest = styled.div`
+const ProductFrameBest = styled.div`
   border-radius: 25px;
   min-height: 200px;
   min-width: 200px;
@@ -55,16 +45,16 @@ export default function Product(props){
   50% { opacity: 0.5; }
 }
 `;
-    const ProductImageWrapperBest = styled.div`
+const ProductImageWrapperBest = styled.div`
   margin: 5px;
   max-width: 200px;
 `;
-    const ProductImageBest = styled.img`
+const ProductImageBest = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 25px;
 `;
-    const ProductInfoWrapperBest = styled.div`
+const ProductInfoWrapperBest = styled.div`
   color:white;
   margin-top: auto;
   margin-bottom: 5px;
@@ -74,7 +64,7 @@ export default function Product(props){
     text-align: center;
   }
 `;
-    const Button = styled.button`
+const Button = styled.button`
   /* Adapt the colors based on primary prop */
   background: ${props => props.primary ? "palevioletred" : "white"};
   color: ${props => props.primary ? "white" : "palevioletred"};
@@ -86,8 +76,11 @@ export default function Product(props){
 `;
 
 
-    return (
-    <ProductFrame>
+export default function Product(props){
+    const [likes, setLikes] = useState(0)
+    const [product, setProduct] = useState(props.product)
+
+    return product.likes < 5 ? (<ProductFrame>
         {product.name}
         <ProductImageWrapper>
             <ProductImage src={product.img}/>
@@ -96,8 +89,17 @@ export default function Product(props){
             <p>💲{product.price} 💕{product.likes}</p>
             <button onClick={() => setProduct({...product, likes: Number(product.likes + 1)})}>💖💖💖</button>
         </ProductInfoWrapper>
-    </ProductFrame>
-    )
+    </ProductFrame>):
+        (<ProductFrameBest>
+            {product.name}
+            <ProductImageWrapperBest>
+                <ProductImage src={product.img}/>
+            </ProductImageWrapperBest>
+            <ProductInfoWrapperBest>
+                <p>💲{product.price} 💕{product.likes}</p>
+                <button onClick={() => setProduct({...product, likes: Number(product.likes + 1)})}>💖💖💖</button>
+            </ProductInfoWrapperBest>
+        </ProductFrameBest>)
 
 
 
