@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {useParams} from "react-router-dom";
+
+const products = React.lazy(() => import("../Products.json"));
+
 
 function ProductDetails(props) {
-    const [product, setProduct] = useState(props.product)
-    const name = props.match.params.id;
-
+    const {id} = useParams()
+    const product = products.filter(product => product.name === id)[0]
+    console.log(product)
     return (
 
         <Container>
@@ -17,6 +21,7 @@ function ProductDetails(props) {
                     <H3>{product.description}</H3>
                 </Content2>
             </ContentBox>
+            <button onClick={()=> props.history.goBack()}>Go back</button>
         </Container>
 
     );
